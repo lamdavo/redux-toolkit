@@ -19,6 +19,16 @@ const cartSlice = createSlice({
     removeItem: (state, action) => {
         const id  = action.payload;
         state.cartItems = state.cartItems.filter((item) => item.id !== id);
+    },
+    calculateTotal: (state) => {
+        let amount = 0 
+        let total = 0
+        state.cartItems.forEach((item) => {
+            amount += item.amount;
+            total += item.price * item.amount;
+        });
+        state.amount = amount;
+        state.total = total;
     }
   },
 });
